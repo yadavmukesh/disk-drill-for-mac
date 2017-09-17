@@ -1,8 +1,63 @@
 Disk Drill Media Recovery
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
 Option #1: The easiest way.
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+If you want to recover your data now, without creating an uncompressed disk image and just making as few clicks as possible: 
+once our data recovery app is installed from the Mac App Store, you just need to download this helper app (~700KB) and run it.
+By installing it, you just allowed our app to access and list all your disks and partitions in a usual way.
 
-If you want to recover your data now, without creating an uncompressed disk image and just making as few clicks as possible: once our data recovery app is installed from the Mac App Store, you just need to download this helper app (~700KB) and run it. By installing it, you just allowed our app to access and list all your disks and partitions in a usual way.
+This helper app is digitally signed by Apple, completely safe to install and use! It’s distributed from our secure servers, 
+developed by CleverFiles team, the same developers who brought Disk Drill Media Recovery and Data Recovery Essential to the Mac App Store.
+It’s provided in a PKG file and installs in seconds. Once deployed, just launch your data recovery app, and all your disks are 
+ready for recovery: internal or external, cameras, USB drives, etc. Almost all regular features become available to you.
 
-This helper app is digitally signed by Apple, completely safe to install and use! It’s distributed from our secure servers, developed by our own CleverFiles team, the same developers who brought Disk Drill Media Recovery and Data Recovery Essential to the Mac App Store. It’s provided in a PKG file and installs in seconds. Once deployed, just launch your data recovery app, and all your disks are ready for recovery: internal or external, cameras, USB drives, etc. Almost all regular features become available to you.
+Alternatively, just download Disk Drill Basic from our website, drag it to your Applications folder, run just once, and your 
+CleverFiles apps from the Mac App Store will be granted the needed access level. That’s it. Happy recovering!
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+Option #2: Recover from a Disk Image.
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+Sandboxed apps (those downloaded from the Apple’s App Store) cannot ask for your root (admin) password, thus they cannot be granted 
+admin privileges, thus they cannot access your disks directly to read them and recover your data. That’s why our data recovery apps 
+from the Mac App Store cannot recover your data out-of-the-box if you don’t have a disk image of the drive or partition with 
+the lost data. Moreover, the disk image has to be a binary copy of the target media, the so called “read-only uncompressed 
+byte-to-byte disk image”.
 
-Alternatively, just download Disk Drill Basic from our website, drag it to your Applications folder, run just once, and your CleverFiles apps from the Mac App Store will be granted the needed access level. That’s it. Happy recovering!
+Here’s how you can create it:
+
+1. Run Disk Utility, it’s a standard Mac OS X system app.
+2. Once there, go to File > New > Disk Image from “YOUR_DISK_NAME”.
+3. When creating a new disk image, it’s VERY important to choose “read-write” as your Image format. 
+4. Do not choose “Compressed” or “read-only”, or lost data will not be copied. Set encryption to “none”.
+5. Now save your disk image elsewhere, like an external hard drive.
+6. Get back to the data recovery app’s window and load the new DMG file into it by either dragging it there, or opening it using 
+the standard file open dialog.
+
+That’s it.Your disk image is loaded and you can recover your deleted data right away. Did we mention that data recovery 
+from a disk image is much faster and will not slow down on bad sectors?
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+Option #3: Create a Disk Image via Terminal.
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+If for some reason the disk image created with Disk Utility did not work, it’s possible that your deleted data (empty disk sectors) 
+was not copied to the disk image properly. There’s an alternative way of creating the disk image that guarantees the proper 
+outcomes for data recovery to work. It’s a bit more geeky though, still very simple, we promise. Here’s what you need to do:
+
+1. Define the “BSD device node” for the disk or partition you are recovering from. 
+To accomplish that launch Disk Utility (as in option #2), locate the disk, and right-click it. 
+In the menu, choose “Get Info”, the newly shown dialog will list a table of data, find “BSD device node”, 
+it will say something like “disk3”. That’s what you need.
+
+2. Now, launch the Terminal app, and type (or paste) the following command:
+sudo dd if=/dev/disk3 of=~/Desktop/disk.dmg bs=128k
+
+Feel free to customize the name of the disk image and its location, as well as use the proper
+
+3. Wait until the process completes. Once done, your disk.dmg will be stored safely on your Desktop.
+
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+Once installed, how do I remove Disk Access Module?
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
+You’ll need to remove “/Library/Application Support/CleverFiles” folder and this file 
+“/Library/LaunchDaemons/com.cleverfiles.cfbackd.plist”. 
+
+The uninstallation is complete upon the reboot of your Mac.
+----- ------ --- ----- ------ --- ----- ------ --- ----- ------ --- 
